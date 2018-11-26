@@ -8,6 +8,12 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
 }
 
 @media (min-width: 576px) {

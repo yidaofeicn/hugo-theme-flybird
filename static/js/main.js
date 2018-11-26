@@ -24,7 +24,26 @@ $(document).ready(function() {
 	//处理锚点效果
 	adjustAnchorScrollEffect();
 
+	responsiveNav();
 });
+
+/*
+响应式导航栏
+链接：
+*/
+function responsiveNav(){
+	$('#site-nav-toggle').on('click', function() { 
+	  $(this).toggleClass('open');
+	  $('.site-header .menu-left').toggleClass('collapse');
+	});
+
+	// REMOVE X & COLLAPSE NAV ON ON CLICK
+	$('.menu-left a').on('click', function() { 
+	  $('#site-nav-toggle').removeClass('open');
+	  $('.site-header .menu-left').removeClass('collapse');
+	});
+}
+
 
 /*
 处理锚点滑动效果

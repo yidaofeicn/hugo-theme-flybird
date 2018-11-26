@@ -3,64 +3,6 @@
 @import "common.scss";
 @import "content.scss";
 @import "markdown.scss";
+@import "responsiveCollapse.scss";
  
- 
-@media (max-width: 768px) { 
-	.site-header{
-		.header-logoImg { 
-			max-height: 2rem;
-			max-width: 2rem;
-			margin-right: 1rem;
-			margin-left: 2rem;
-		}
-		.site-title{
-			max-width: 20%;
-			margin-right: 20%;
-			margin-left: 15%;
-		}
-		.header-navItem{
-        	text-align: center;
-   		}
-	}
-
-	.main-content{
-		width: 99%;
-		margin-right: auto;
-		margin-left:  auto;
-	}
-	@mixin content-card{
-		padding: 0.2rem 0.5rem; 
-	 	margin-top: 0.5rem;
-	 	margin-bottom: 0.5rem; 
-	}
-	.article-card{
-		@include content-card;
-
-		.article-header{
-			.article-meta{
-				justify-content: flex-start;
-			}
-		}
-	}
-	.categories-card{
-		@include content-card;
-	}
- 
-	.pagination{
-		max-width: 99%;
-		min-width:95%;
-		margin-right: auto;
-		margin-left:  auto;
-	}
-
-	.content-card{
-		box-shadow: 0 0.125rem 0.25rem 0rem rgba(0,0,0,.16), 0 0.125rem 0.5rem 0rem rgba(0,0,0,.12);
-	    border: 0.025rem solid #dee8ef;
-	    border-radius: .25rem;
-	    background: #fff;
-	   	padding: 0.5rem 1rem; 
-	 	margin-top: 1rem;
-	 	margin-bottom: 1rem; 
-	} 
-}
-
+  

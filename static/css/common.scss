@@ -103,51 +103,6 @@ h6, .h6 {
 
 //end_通用标签属性定义
 
-//定义网站头部部分
-.site-header{
-	width: 100%;
-	padding: 0.5rem 1rem; 
-	margin-bottom: 6rem;
-	background-color: #343a40 !important;
-	
-	a{
-		color:#FFF !important;   
-  		padding: 0.5rem 1rem; 
-	}
-	
-
-	.header-site-title{
-		display: inline-block;
-	    padding-top: 0.3125rem;
-	    padding-bottom: 0.3125rem;
-	    margin-right: 1rem;
-	    font-size: 1.25rem;
-	    line-height: inherit;
-	    white-space: nowrap; 
-
-	    &>img{
-	    	max-height: 2rem;
-			max-width: 2rem;
-			margin-right: 1rem; 
-			vertical-align: middle;
-    		border-style: none;
-	    }
-	}
- 
-	.header-menu{
-		display: flex;
-  		display: -webkit-flex;
-		justify-content:space-between;
-
-		&>li{
-			list-style-type: none;
-		} 
-
-		a:hover{
-			color: #959595 !important;
-		}
-	}
-}
 
 //网站底部
 .site-footer{
