@@ -76,18 +76,22 @@
 		</div> 
 	</div>
 	<hr/>
-	<div> 
-		{{ with .NextInSection }} 
-		  <div class="refArticle-prev float-left" >
-		    <a href="{{ .Permalink }}"><i class="fa fa-angle-double-left"></i>&nbsp;{{ .Title }}  </a>
-		  </div>
-		{{ end }}
-		{{ with .PrevInSection }} 
-		  <div class="refArticle-next float-right" >
-		  	<a href="{{ .Permalink }}">{{ .Title }}&nbsp;<i class="fa fa-angle-double-right"></i></a>
-		  </div>
+	<div class="article-footer-meta-between"> 
+		<div class="refArticle-prev" >
+			{{ with .NextInSection }}  
+		    <a href="{{ .Permalink }}">
+		    	<i class="fa fa-angle-double-left"></i>&nbsp;{{ .Title }}  
+		    </a> 
+			{{ end }}
+		</div>
+		 <div class="refArticle-next" >
+		{{ with .PrevInSection }}  
+		  	<a href="{{ .Permalink }}">{{ .Title }}&nbsp;
+		  		<i class="fa fa-angle-double-right"></i>
+		  	</a> 
 		{{ end }} 
-	</div> 
+	    </div>
+	</div>  
 </article> 
 </section>
  
@@ -95,10 +99,6 @@
  <!-- Comments --> 
  {{ partial "comments.html" . }}
 <!--article TOC--> 
-
-
- 
- 
 
 {{ partial "article-sidebar.html" .}}
 
