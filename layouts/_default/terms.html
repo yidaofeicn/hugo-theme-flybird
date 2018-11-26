@@ -120,8 +120,8 @@
 		  		<li class="categories-toc-item-li"> 
 		      	<a href="#categories-{{ $key | urlize | lower }}"  title="{{ $key}}">
 		          {{ $key }} 
-		        </a>
-		        <span class="clearfix float-right badge badge-danger">{{ len $taxonomy }}</span>
+              <span class="float-right sectionSup">{{ len $taxonomy }}</span>
+		        </a> 
 		     	</li>
 		    {{ end }}
 			    </ul>

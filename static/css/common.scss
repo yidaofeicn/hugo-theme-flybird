@@ -327,45 +327,65 @@ h6, .h6 {
 //侧边栏
 .sidebar{
 	@mixin toc-item-li{
-		border-bottom: 0.1em dotted;
 		text-align: left; 
 		list-style-type: none; 
 	}
+	
+	@mixin toc-anchor{
+		text-decoration: none;
+		padding-left: 0.5rem;
+	    color: #364149; 
+	    overflow:hidden;  
+	  	text-overflow:ellipsis; 
+	  	white-space:nowrap;   
+	  	display: block;
+	  	max-width: 99%;
+		border-bottom: 0.1em dotted;
 
+		&:hover{
+			font-weight: bolder;
+	    	color: #4183c4;
+		}
+	} 
+	//分类页面
 	.categories-toc-item-li{
 		@include toc-item-li;
 		margin: 1rem auto 1rem 0rem;
+		
+		
+		& .sectionSup{ 
+			color: #fff;
+			background-color: #dc3545;
+			display: inline-block;
+			padding: 0.25em 0.4em;
+			font-size: 75%;
+			font-weight: 700;
+			line-height: 1;
+			text-align: center;
+			white-space: nowrap;
+			vertical-align: baseline;
+			border-radius: 0.25rem;
+		} 
+
+		a{
+			@include toc-anchor;
+			font-size: 1rem; 
+		} 
 	}
 
 	.article-toc-item-ul{
 		padding-left: 0.5rem;
 	    margin-left: 0.5rem; 
 	    max-width: 99%;
-	   
-		
-
+	    
 	    .article-toc-item-li{
 		    @include toc-item-li;
-		    border-bottom: none; 
+		    border-bottom: none;  
 
 		    a{
-		     	text-decoration: none;
-			    border-bottom: none;
-			    font-size: 0.8rem;
-			    padding-left: 0.5rem;
-			    color: #364149; 
-			    overflow:hidden;  
-			  	text-overflow:ellipsis; 
-			  	white-space:nowrap;   
-			  	display: block;
-			  	max-width: 99%;
-				border-bottom: 0.1em dotted;
-				
-			  	&:hover{
-			  		font-weight: bolder;
-			    	color: #4183c4;
-			  	}
-		    }
+				@include toc-anchor;
+				font-size: 0.8rem; 
+			}
 		}
 	}
 	.toc-item-scrollSync{
