@@ -1,5 +1,6 @@
 {{ if and .IsPage (ne .Params.comment false) }}
-
+<div class="main-content-container " >
+<div class="comment-card"> 
   <!-- utteranc -->
   {{ if .Site.Params.utteranc.enable }}
     <div class="post bg-white">
@@ -87,4 +88,6 @@
   <!-- <a href="http://disqus.com/" class="dsq-brlink" target="_blank">comments powered by <span class="logo-disqus">Disqus</span></a> -->
   </div>
   {{- end }}
+</div>
+</div> 
 {{- end }}
