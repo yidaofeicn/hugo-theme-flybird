@@ -2,6 +2,7 @@
 
 {{ if .Site.Params.paginateOriginalStyle -}} 
 <!-- paginate original style  -->
+<div class="pagination-content-container">
 <nav class="pagination">
 
   {{ with $pag.Prev }}
@@ -18,7 +19,7 @@
   </a>
   {{ end }}
 </nav>
-
+</div>
 {{ else }}
 
   <!-- paginate numbered style  -->
@@ -36,18 +37,20 @@
 
   <!-- 1 < page number <= $max_links -->
   {{ if and (gt $pag.TotalPages 1) (le $pag.TotalPages $max_links) }}
-  <div class="pagination " > 
-      {{ range $pag.Pagers }}
-        {{if eq $pag.PageNumber .PageNumber}}
-          <a href="{{ .URL }}" class="page-link page-link-visited"> {{ .PageNumber }}</a> 
-        {{ else}}
-          <a href="{{ .URL }}" class="page-link "> {{ .PageNumber }}</a> 
+  <div class="pagination-content-container">
+    <div class="pagination " > 
+        {{ range $pag.Pagers }}
+          {{if eq $pag.PageNumber .PageNumber}}
+            <a href="{{ .URL }}" class="page-link page-link-visited"> {{ .PageNumber }}</a> 
+          {{ else}}
+            <a href="{{ .URL }}" class="page-link "> {{ .PageNumber }}</a> 
+          {{ end }} 
         {{ end }} 
-      {{ end }} 
+    </div>
   </div>
-
   <!-- page number > $max_links -->
   {{ else if gt $pag.TotalPages $max_links }}
+  <div class="pagination-content-container">
   <div class="pagination">
 
     <!-- First page. -->
@@ -123,7 +126,7 @@
     {{ end }}
 
     </div>
-  
+  </div>
   <!-- .pagination -->
   {{ end }} 
 {{ end }}

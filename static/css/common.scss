@@ -101,8 +101,6 @@ h6, .h6 {
   font-size: 1rem;
 }
 
-//end_通用标签属性定义
-
 
 //网站底部
 .site-footer{
@@ -131,14 +129,11 @@ h6, .h6 {
 	}
 }
 
+
 //主体部分-只管内容的位置大小
-.main-content-container{
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 2rem 4rem; 
+.main-content-container{ 
   	margin-top: 4rem;
-  	margin-bottom: 1rem; 
+  	margin-bottom: 0.5rem;   
 	
 	//处理主体内容内部的超链接颜色与样式
   	a{ 
@@ -159,7 +154,6 @@ h6, .h6 {
   	border: 0.025rem solid #dee8ef;
   	border-radius: .25rem;
   	background: #fff;
-  	padding: 2rem 3rem; 
   	margin-top: 1rem;
   	margin-bottom: 1rem; 
 }
@@ -169,16 +163,13 @@ h6, .h6 {
 	@include content-card; 
   	margin-top: -6rem;
   	margin-bottom: 1rem;  
+   
 }
 
 //分页样式
-.pagination{
-	max-width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	padding-left:4rem ;
+.pagination{  
 	padding-top:1rem;
-	padding-bottom: 1rem; 
+	padding-bottom: 1rem;  
 
 	.page-link{
 		margin-left: 0.2rem;
@@ -348,3 +339,89 @@ h6, .h6 {
 	}
 }
   
+
+//响应式
+@media (min-width: 576px) {
+  .main-content-container {
+    max-width: 540px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2rem 1rem;   
+  }
+  .pagination-content-container{  
+    max-width: 540px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem; 
+  }
+  .article-card,.categories-card,.tag-card,.comment-card{
+  	padding: 2rem 1.5rem; 
+  }
+  .pagination{ 
+	padding-left:.5rem ;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-content-container {
+    max-width: 720px;
+    margin-left: auto;
+	margin-right: auto; 
+	padding: 2rem 1rem;  
+  }
+  .pagination-content-container{  
+    max-width: 720px;
+    margin-left: auto;
+	margin-right: auto; 
+	padding-left: 1rem; 
+  }
+  .article-card,.categories-card,.tag-card,.comment-card{
+  	padding: 2rem 1.5rem; 
+  }
+  .pagination{ 
+	padding-left:.5rem ;
+  }
+}
+
+@media (min-width: 992px) {
+  .main-content-container {
+    max-width: 960px;
+    margin-left: auto;
+	margin-right: auto; 
+    padding: 2rem 3rem;  
+  }
+  .pagination-content-container{  
+    max-width: 960px;
+    margin-left: auto;
+	margin-right: auto; 
+    padding-left: 3rem; 
+  }
+  .article-card,.categories-card,.tag-card,.comment-card{
+  	padding: 2rem 3rem; 
+  }
+  .pagination{ 
+	padding-left:1rem ;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-content-container {
+    max-width: 1140px;
+    margin-left: auto;
+	margin-right: auto;
+    padding: 2rem 3rem;  
+  }
+  .pagination-content-container{
+	max-width: 1140px; 
+    margin-left: auto;
+	margin-right: auto;
+    padding-left: 3rem; 
+  }
+  .article-card,.categories-card,.tag-card,.comment-card{
+  	padding: 2rem 3rem; 
+  }
+  .pagination{ 
+	padding-left:1rem ;
+	
+  }
+}
