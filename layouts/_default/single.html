@@ -34,43 +34,60 @@
 					<a href="{{ $.Site.BaseURL }}categories/{{ . | urlize | lower }}">{{ . }}</a> 
 				{{ end }}   
 				</i>  
-			</div>
-			
-			 
-			<!--标签--> 
-			<div>
-				&nbsp;&nbsp;<i class="fa fa-tags">&nbsp;Tags:
-				{{ range .Params.tags }}
-					<a href="{{ $.Site.BaseURL }}tags/{{ . | urlize | lower }}">{{ . }}</a>
-	    		{{ end }}
-	    		</i>   
 			</div> 
 		</div>  
 	</header>  
 	<content class="markdown">
 		{{ .Content }}
-			
-		 
-		<div class="text-center">
-			<div id="i-share"
-			    class="btn btn-default  share-widget">
-			    <i class="fa fa-share-alt"></i>
+			  
+		<!--文章版权申明引用-->
+		{{ if .Params.CopyrightStatement }}
+			<div class="article-copyright">
+			  	<ul>
+			  		<li><strong>本文作者：</strong>{{ .Params.author}}</li>
+			  		<li><strong>本文链接：</strong>{{ .Permalink }}</li>
+			  		<li><strong>版权申明：</strong>{{ .Params.CopyrightStatement |  safeHTML}}</li>
+			  	</ul>
 			</div>
-		</div> 
+		{{ else }}
+			<div class="article-copyright">
+			  	<ul>
+			  		<li><strong>本文作者：</strong>{{ .Site.Params.articleAuth.author}}</li>
+			  		<li><strong>本文链接：</strong>{{ .Permalink }}</li>
+			  		<li><strong>版权申明：</strong>{{ .Site.Params.articleAuth.CopyrightStatement | safeHTML }}</li>
+			  	</ul>
+			</div>
+		{{ end }} 
 	</content>  
- 
-  <div class="article-footer"> 
-    {{ with .NextInSection }} 
-      <div class="ref-prev" >
-        <a href="{{ .Permalink }}"><i class="fa fa-angle-double-left"></i>&nbsp;{{ .Title }}  </a>
-      </div>
-    {{ end }}
-    {{ with .PrevInSection }} 
-      <div class="ref-next" >
-      	<a href="{{ .Permalink }}">{{ .Title }}&nbsp;<i class="fa fa-angle-double-right"></i></a>
-      </div>
-    {{ end }} 
-  </div> 
+ 	<hr/>
+ 	<!--分享与标签项-->
+	<div class="article-footer-meta-between"> 
+		<!--标签--> 
+		<div>
+			<i class="fa fa-tags">&nbsp;Tags:
+			{{ range .Params.tags }}
+				<a href="{{ $.Site.BaseURL }}tags/{{ . | urlize | lower }}">{{ . }}</a>
+    		{{ end }}
+    		</i>   
+		</div> 
+		<!--分享插件--> 
+		<div id="i-share" class="btn btn-default  share-widget">
+		    <i class="fa fa-share-alt"></i>
+		</div> 
+	</div>
+	<hr/>
+	<div> 
+		{{ with .NextInSection }} 
+		  <div class="refArticle-prev float-left" >
+		    <a href="{{ .Permalink }}"><i class="fa fa-angle-double-left"></i>&nbsp;{{ .Title }}  </a>
+		  </div>
+		{{ end }}
+		{{ with .PrevInSection }} 
+		  <div class="refArticle-next float-right" >
+		  	<a href="{{ .Permalink }}">{{ .Title }}&nbsp;<i class="fa fa-angle-double-right"></i></a>
+		  </div>
+		{{ end }} 
+	</div> 
 </article> 
 </section>
  

@@ -1,9 +1,9 @@
 <footer class="site-footer text-center">
   <div class="social" > 
-    {{ with .Site.Params.email}} 
+    {{ with .Site.Params.social.email}} 
           <a href=" mailto:{{ . }} "><i class="fa fa-envelope-open-o"></i></span></a>
       {{ end }}
-      {{ with .Site.Params.githubURL}} 
+      {{ with .Site.Params.social.github}} 
           <a href=" {{ . }} "  ><i class="fa fa-github"></i></span></a>
       {{ end }}
     
@@ -19,9 +19,7 @@
     Powered by &nbsp;<a href="https://gohugo.io/">Hugo</a>&nbsp;|&nbsp;
     Theme-<a href="">Flybird</a>  
   </div>
-  <div class="copyright">
-      <a href="{{ .Site.Params.copyrightURL}}">{{ .Site.Params.copyrightName}}</a>
-  </div> 
+  <div class="copyright"> {{ .Site.Params.siteAuth.copyrightStatement | safeHTML }}</div> 
   <div class="copyright"> 
 
      <!-- Counter busuanzi --> 

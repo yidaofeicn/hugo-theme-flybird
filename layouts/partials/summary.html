@@ -27,20 +27,9 @@
 		 	{{ .Summary }} 
 		</div>
 	</div>
-	<footer class="article-footer">
+	<hr/>
+	<footer style="display: flex;justify-content: space-between;">
 		<div>
-		<!--分类--> 
-		{{ if isset .Params "categories" }} 
-		{{ if gt (len .Params.categories ) 0 }}
-			<span>
-				<i class="fa fa-th"></i> 
-				{{ range $category := .Params.categories }}
-					<a href="{{ $.Site.BaseURL }}categories/{{ $category | urlize | lower }}">{{ . }}</a> &nbsp;&nbsp;
-				{{ end }}   
-			</span> 
-			{{ end }}
-		{{ end }}
-		 
 		<!--标签--> 
 		{{ if isset .Params "tags" }} 
 		{{ if gt (len .Params.tags ) 0 }}  
