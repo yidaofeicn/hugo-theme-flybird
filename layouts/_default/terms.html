@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<!--导入通用的头部数据-->
+{{ partial "head.html" . }}
+
+<body> 
+
+ 
+ 
+
+{{ partial "header.html"  .}} 
+ 
+{{ if .Site.Params.isDevMode }}
+<center style="background: red;"><strong>default/terms.html</strong></center>
+{{ end }}
+
+
+{{ $termName := .Data.Plural }}
+{{ $terms := .Data.Terms.ByCount }}
+{{ $length := len $terms }}
+{{ $type := .Type }}
+
+
+
+<!-- Categories Page -->
+{{ if and $.Site.Taxonomies.categories (eq $termName "categories") }}
+<div class="main-content-container" > 
+  <!--主体部分--> 
+    {{ range $terms }}
+      {{ $term := .Term }}
+      {{ $pages := .Pages }}
+
+      {{ with $.Site.GetPage "taxonomy" (printf "%s/%s" $type $term) }}
+      <section class="categories-card"> 
+        <a href="{{ $.Site.BaseURL }}categories/{{ $term | urlize | lower }}" 
+           class="categories-title" title="{{ $term}}" id="categories-{{ $term }}">
+            <h4 >{{ $term }}
+              <span class="sectionSup" >{{ len $pages }}</span>
+            </h4>
+        </a> 
+
+        <!--迭代输出5页-->
+        {{ range first 5 $pages }}
+          <ul>
+            <li>
+              <span>{{ .Date.Format (.Site.Params.DateFormat | default "2006-01-02") }}&nbsp;&nbsp;</span>
+              <a href="{{ .Permalink}}">{{ .LinkTitle }}</a>
+            </li> 
+          </ul>    
+        {{ end }}
+
+        <!--查看更多-->
+        {{ if gt (len $pages) 5 }}
+          <div class="clearfix">
+            <a href="{{ $.Site.BaseURL }}categories/{{ $term | urlize | lower }}"  class="float-right">阅读更多</a>
+          </div>
+        {{ end }} 
+      </section>  
+      {{ end }} 
+    {{ end }}   
+
+  <div id="sidebar-main-trigger" class="tableContentToc">
+    <i class="fa fa-anchor"></i> 
+  </div>
+
+</div>
+<!-- END Categories Page -->
+
+
+<!-- Tag cloud Page -->
+{{ else if and $.Site.Taxonomies.tags (eq $termName "tags") }}
+<!--字体设置-->
+{{ $fontUnit := "rem" }} 
+{{ $largestFontSize := 2.5 }}
+{{ $smallestFontSize := 1.0 }}
+{{ $fontSpread := sub $largestFontSize $smallestFontSize }}
+{{ $max := add (len (index $.Site.Taxonomies.tags.ByCount 0).Pages) 1 }}
+{{ $min := len (index $.Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
+{{ $spread := sub $max $min }}
+{{ $fontStep := div $fontSpread $spread }}
+
+
+<div class="main-content-container">
+  <div class="tag-card">
+        <div class="tag-cloud-title">
+             {{ $length }} Tags In Total
+        </div>
+        <div class="tag-cloud-tags">
+        {{ range $tagName, $taxonomy := $.Site.Taxonomies.tags }}
+            {{ $currentTagCount := len $taxonomy.Pages }}
+            {{ $currentFontSize := (add $smallestFontSize (mul (sub $currentTagCount $min) $fontStep) ) }}
+            {{ $count := len $taxonomy.Pages }}
+            {{ $weigth := div (sub (math.Log $count) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
+            {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth) ) }}
+            {{ with $.Site.GetPage "taxonomy" (printf "%s/%s" $type $tagName) }}
+              <!--Current font size: {{$currentFontSize}}-->  
+              <a href="{{ .Permalink }}" 
+                style="font-size:{{$currentFontSize}}{{$fontUnit}}">{{ $tagName }}
+              </a>
+               
+            {{ end }}
+        {{ end }}
+        </div> 
+  </div>
+</div>
+{{ end }} 
+<!-- Tag cloud Page-->
+
+<!--categories TOC-->
+
+<div class="sidebar main right" id="sidebar-main"> 
+	<div class="wrapper">
+		<div >
+		 	<!--判断为分类--> 
+		  {{ if isset .Site.Taxonomies "categories" }}
+		  {{ if not (eq (len .Site.Taxonomies.categories) 0) }}  
+		  <!--批量处理标签-->
+		  	<ul>
+		    {{ range $key, $taxonomy := .Site.Taxonomies.categories }}
+		  		<li class="categories-toc-item-li"> 
+		      	<a href="#categories-{{ $key | urlize | lower }}"  title="{{ $key}}">
+		          {{ $key }} 
+		        </a>
+		        <span class="clearfix float-right badge badge-danger">{{ len $taxonomy }}</span>
+		     	</li>
+		    {{ end }}
+			    </ul>
+		   {{ end }}
+		   {{ end }}	 
+		</div> 
+	</div>
+</div> 
+</div>
+
+
+{{ partial "footer.html"  .}} 
+ 
+</body>
+</html>

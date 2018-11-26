@@ -1,0 +1,14 @@
+---
+baseURL: "/"
+languageCode:  "zh-cn"
+title: "易道非 blog"
+theme: "flybirdNext"
+description: "道可道，非恒道"
+ 
+
+
+algolia:
+  index: "github-yidaofeicnBlog"
+  key: "d5112e7db434b0ddde55e672e3e99749"
+  appID: "9WQQ3K8K53"
+---

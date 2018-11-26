@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<!--导入通用的头部数据-->
+{{ partial "head.html" . }}
+<body> 
+ 
+
+<!--导入头部页面--> 
+{{ partial "header.html"  .}} 
+
+{{ if .Site.Params.isDevMode }}
+<center style="background: red;"><strong>default/single.html</strong></center>
+{{ end }}
+
+<section class="main-content-container">
+<article class="article-card">
+	<header class="article-header"> 
+	   <p class="article-title">{{ .Title }}</p>
+   		<div class="article-meta">
+			{{with .Date}}
+			<div><i class="fa fa-calendar" >{{  .Format $.Site.Params.DateFormat  }}</i> </div>
+			{{ end }}  
+
+			<!--查看数--> 
+			<div>
+				{{ if .Site.Params.busuanzi }}
+					<i class="fa fa-eye"></i><span id="busuanzi_value_page_pv"></span>&nbsp;read 
+	            {{ end }}
+			</div>  
+			<!--分类--> 
+			<div>
+				&nbsp;&nbsp;<i class="fa fa-th">&nbsp;Categories:
+				{{ range .Params.categories }}
+					<a href="{{ $.Site.BaseURL }}categories/{{ . | urlize | lower }}">{{ . }}</a> 
+				{{ end }}   
+				</i>  
+			</div>
+			
+			 
+			<!--标签--> 
+			<div>
+				&nbsp;&nbsp;<i class="fa fa-tags">&nbsp;Tags:
+				{{ range .Params.tags }}
+					<a href="{{ $.Site.BaseURL }}tags/{{ . | urlize | lower }}">{{ . }}</a>
+	    		{{ end }}
+	    		</i>   
+			</div> 
+		</div>  
+	</header>  
+	<content class="markdown">{{ .Content }}</content>  
+ 
+  <div class="article-footer">
+    {{ with .NextInSection }} 
+      <div class="ref-prev" >
+        <a href="{{ .Permalink }}"><i class="fa fa-angle-double-left"></i>&nbsp;{{ .Title }}  </a>
+      </div>
+    {{ end }}
+    {{ with .PrevInSection }} 
+      <div class="ref-next" >
+      	<a href="{{ .Permalink }}">{{ .Title }}&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      </div>
+    {{ end }} 
+  </div> 
+</article> 
+</section>
+ 
+<div class="main-content-container " >
+<div class="comment-card"> 
+  <!-- Comments --> 
+  {{ partial "comments.html" . }}
+</div>
+</div> 
+<!--article TOC--> 
+
+
+ 
+ 
+
+{{ partial "article-sidebar.html" .}}
+
+{{ partial "footer.html"  .}}  
+ 
+</style>
+</body>
+</html>
+
+
+ 

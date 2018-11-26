@@ -1,0 +1,60 @@
+<article class="article-card">
+	<header class="article-header">  
+		<a href="{{ .Permalink }}" title="{{ .Title }}" class="article-title" >
+			<h4 >{{ .Title }}</h4>
+		</a>
+		<div class="article-meta"> 
+			<time datetime="{{ .Date.Format "2006-01-02" }}">
+				<i class="fa fa-calendar">&nbsp;{{ .Date.Format ($.Site.Params.DateFormat | default "2006-01-02") }}</i>
+			</time> 
+			<span><i class="fa fa-pencil">&nbsp;{{.WordCount }} word</i></span>
+			<span><i class="fa fa-hourglass-start">&nbsp;{{ .ReadingTime }} min read</i></span>
+		</div> 
+	</header> 
+		
+	<div>   
+		{{ with .Params.articleCover}} 
+		<p  class="article-cover " > 
+			<!--优先处理图片问题--> 
+				{{ if (hasPrefix . "http") }}
+					<img src="{{. }}" > 
+				{{ else }}
+					<img src="{{ $.Site.BaseURL}}{{ . }}" >
+				{{ end }}  
+		</p> 
+		{{ end }} 
+		<div class="markdown">
+		 	{{ .Summary }} 
+		</div>
+	</div>
+	<footer class="article-footer">
+		<div>
+		<!--分类--> 
+		{{ if isset .Params "categories" }} 
+		{{ if gt (len .Params.categories ) 0 }}
+			<span>
+				<i class="fa fa-th"></i> 
+				{{ range $category := .Params.categories }}
+					<a href="{{ $.Site.BaseURL }}categories/{{ $category | urlize | lower }}">{{ . }}</a> &nbsp;&nbsp;
+				{{ end }}   
+			</span> 
+			{{ end }}
+		{{ end }}
+		 
+		<!--标签--> 
+		{{ if isset .Params "tags" }} 
+		{{ if gt (len .Params.tags ) 0 }}  
+			<span >
+				<i class="fa fa-tags"></i> 
+				{{ range $tag := .Params.tags }}
+						<a href="{{ $.Site.BaseURL }}tags/{{ $tag | urlize | lower }}">{{ . }}</a> &nbsp;&nbsp;
+	    		{{ end }}   
+    		</span> 
+    	{{ end }}
+		{{ end }}
+		</div> 
+		<div >
+			<a href="{{ .Permalink }}" title="{{ .Title }}" >阅读全文</a> 
+		</div>
+	</footer>
+</article>

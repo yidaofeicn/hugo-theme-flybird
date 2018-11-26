@@ -1,0 +1,40 @@
+
+
+  <meta charset="UTF-8">
+
+  <!--针对移动设备，禁用缩放-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" >
+
+  <!--定义关键词-->
+  {{ if .Keywords}}
+    <!--相关页面关键词为数组格式-->
+    <meta charset="utf-8" name="keywords" content="{{ range .Keywords }}{{ . }},{{ end }}" > 
+  {{else if eq .URL "/"}}
+    <meta charset="utf-8" name="keywords" content="{{ .Site.Params.Keywords }}" >
+  {{ end }}
+  <!--定义描述--> 
+  <meta charset="utf-8" name="description" content="{{ if .Description }}{{ .Description }}{{ else if .IsPage }}{{ .Summary }}{{ else }}{{ .Title }}{{ end }}" >
+  <!--定义作者信息-->
+  {{ with .Site.Params.authorName }}
+    <meta name="author" content="{{ . }}">
+  {{ end }}
+  {{ with .Site.Params.favicon }}
+    {{ if hasPrefix $.Site.Params.favicon "^http"}} 
+        <link rel="icon" type="image/png" href="{{ $.Site.Params.favicon }}" > 
+    {{ else }}
+        <link rel="icon" type="image/png" href="{{ $.Site.BaseURL }}{{ $.Site.Params.favicon }}" > 
+    {{ end }}
+  {{ end }}
+  
+  
+  <!--判断文章是否是文章首页（URL为“/”），如不是则直接使用当前页面的标签-->
+  <title>{{ if ne .URL "/" }}{{ .Title}}-{{end}}{{ .Site.Title }}</title>  
+  <!--google统计-->
+  {{ if not .Site.IsServer }}
+    {{ template "_internal/google_analytics_async.html" . }}
+  {{ end }}
+
+
+  <!--导入相关的CSS-->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}/css/style.css">

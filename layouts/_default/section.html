@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<!--导入通用的头部数据-->
+{{ partial "head.html" . }}
+<body> 
+{{ partial "header.html"  .}} 
+ 
+{{ if .Site.Params.isDevMode }}
+<center style="background: red;"><strong>default/section.html</strong></center>
+{{ end }}
+
+{{- $paginator := .Paginate (where .Data.Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 10) }}
+
+<div class="main-content-container">
+  {{- if not $paginator.HasPrev }}
+    <div class="archive-title">
+      <span class="archive-post-counter">
+        {{- $length := len .Data.Pages }} 
+      </span>
+    </div>
+  {{- end -}}
+
+   {{- range $index, $element := $paginator.Pages -}}
+    {{- $thisYear := $element.Date.Format "2006" }}  
+    {{- $lastElement := $index | add -1 | index $paginator.Pages }} 
+    {{- $nextElement := $index | add +1 | index $paginator.Pages }} 
+    {{ if or (eq $index 0) ( ne ($lastElement.Date.Format "2006") $thisYear ) }} 
+         <section class="categories-card"> 
+          <ul>
+          <h2 class="categories-title">{{ $thisYear }}</h2>  
+    {{- end }}
+      
+      
+        <li>
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (.Site.Params.DateFormat | default "2006-01-02") }}&nbsp;&nbsp;</time>
+          <a href="{{ $element.URL }}"> {{ .Title }}</a>  
+        </li>  
+        {{ if or (eq $index ("archive-paginate" | default 10)) (ne ($nextElement.Date.Format "2006") $thisYear)}} 
+            </ul>  
+            </section> 
+         {{ end }} 
+  {{- end -}} 
+</div> 
+<!-- END section Page -->
+
+ 
+ <!-- pagination -->
+{{ partial "pagination.html" . }}
+
+{{ partial "footer.html"  .}} 
+ 
+</body>
+</html>
+ 

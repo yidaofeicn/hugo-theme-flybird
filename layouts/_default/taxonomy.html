@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<!--导入通用的头部数据-->
+{{ partial "head.html" . }}
+<body> 
+ 
+{{ if .Site.Params.isDevMode }}
+<center style="background: red;"><strong>default/toxonomy.html</strong></center>
+{{ end }}
+
+{{ partial "header.html"  .}} 
+ 
+
+
+
+<section class="main-content-container ">
+  <div class="categories-card">
+    <header class="text-center">
+      <h4>{{ .Title }}</h4>
+    </header> 
+
+    {{ $paginator := .Paginate (where .Data.Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 10) }}       
+      <ul class="article-list">
+      {{ range $paginator.Pages }}  
+          <li>
+            <time datetime="{{ .Date}}">{{.Date.Format (.Site.Params.DateFormat|default "2006-01-02")  }}</time>
+            <a href="{{ .Permalink}}"> {{ .LinkTitle }}</a> 
+          </li>  
+      {{ end }} 
+      </ul>   
+  </div>
+</section>  
+
+{{ partial "pagination.html" . }}
+
+<!--文章尾部--> 
+{{ partial "footer.html"  .}} 
+</body>
+</html>
+ 
+

@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+
+<!--导入通用的头部数据-->
+{{ partial "head.html" . }}
+<body> 
+ 
+
+
+<!--导入头部页面--> 
+{{ partial "header.html"  .}} 
+
+{{ if .Site.Params.isDevMode }}
+<center style="background: red;"><strong>section/wiki.html</strong></center>
+{{ end }}
+
+<section class="main-content-container">
+<article class="article-card">
+	<header class="article-header text-center"> 
+	    <p class="article-title">{{ .Title }}</p>
+	</header>  
+	<content class="markdown">{{ .Content }}</content>  
+
+	<!-- Post Pagination --> 
+</article> 
+</section>
+ 
+ 
+<!--文章尾部-->
+ 
+{{ partial "footer.html"  .}} 
+ 
+</body>
+</html>
+
+
+ 

@@ -1,0 +1,87 @@
+<footer class="site-footer text-center">
+  <div class="social" > 
+    {{ with .Site.Params.email}} 
+          <a href=" mailto:{{ . }} "><i class="fa fa-envelope-open-o"></i></span></a>
+      {{ end }}
+      {{ with .Site.Params.githubURL}} 
+          <a href=" {{ . }} "  ><i class="fa fa-github"></i></span></a>
+      {{ end }}
+    
+      {{ with .Site.GetPage "home" -}}
+          {{ with .OutputFormats.Get "RSS"  }}
+                <a href="{{ .Permalink }}" rel="noopener {{ .Rel }}" type="{{ .MediaType.Type }}" target="_blank"> <i class="fa fa-rss"></i>
+                </a>
+          {{ end}}  
+      {{- end -}}
+    </div>
+   
+  <div class="copyright"  >
+    Powered by &nbsp;<a href="https://gohugo.io/">Hugo</a>&nbsp;|&nbsp;
+    Theme-<a href="">Flybird</a>  
+  </div>
+  <div class="copyright">
+      <a href="{{ .Site.Params.copyrightURL}}">{{ .Site.Params.copyrightName}}</a>
+  </div> 
+  <div class="copyright"> 
+
+     <!-- Counter busuanzi --> 
+    {{ if .Site.Params.busuanzi }}
+      <span id="busuanzi_container">
+        访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+      </span>
+    {{ end }}
+  </div>
+</footer>
+
+ 
+<!--后面主要导入相关的 JavaScript 库资源-->
+<div id="bottom-element" data-title="定位底部"><!--配合插件 elevator 回到顶点--></div>
+
+
+<!--JQUERY 插件-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script> 
+
+<!--JQUERY 插件-回到定点与底部-->
+<link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}/thirdParty/scrollToTopBottom/jquery.elevator.min.css">
+<script type="text/javascript" src="{{ .Site.BaseURL }}/thirdParty/scrollToTopBottom/jquery.elevator.min.js"></script>
+<!--JQUERY 插件-algolia 搜索--> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/algoliasearch/3.30.0/algoliasearch.jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.32.0/autocomplete.jquery.min.js"></script>
+<!--JQUERY 插件-algoliasearch 自定义CSS-->
+<link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}thirdParty/algoliasearch/algolia-autocomplete.css">
+<!--JQUERY 插件-simpler-sidebar 侧边栏-->
+<link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}thirdParty/simpler-sidebar/jquery.simpler-sidebar.css"> 
+<script type="text/javascript" src="{{ .Site.BaseURL }}thirdParty/simpler-sidebar/jquery.simpler-sidebar.js"></script> 
+<!--JQUERY 插件 remodal-->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal-default-theme.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.js"></script>
+
+
+<!--样式插件-->
+<!--代码高亮 prismjs -->
+<link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}/thirdParty/prismjs/prism.css">
+<script type="text/javascript" src="{{ .Site.BaseURL }}/thirdParty/prismjs/prism.js"></script>
+<!--盘古之白-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pangu/3.3.0/pangu.min.js"></script>
+<!--背景线条https://github.com/hustcc/canvas-nest.js/blob/master/README-zh.md-->
+<script type="text/javascript" color="#1D1D1D" opacity='1' zIndex="-2" count="400" src="https://cdnjs.cloudflare.com/ajax/libs/canvas-nest.js/2.0.3/canvas-nest.js"></script>
+<!--独立插件-->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<!--页面 CSS、JavaScript-->
+{{ if .IsPage}}
+<!--并埋入一个数据点-->
+<span id="isPage" data-isPage="true" style="display: none;"></span>
+
+<!--音乐播放软件-->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+{{ end }}
+
+ 
+<!--导入自定义JavaScript-->
+<script type="text/javascript" src="{{ .Site.BaseURL }}/js/flybird.js"></script> 
+<script type="text/javascript" src="{{ .Site.BaseURL }}/js/main.js"></script> 

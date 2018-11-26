@@ -1,0 +1,35 @@
+<div id="top-element" data-title="到达顶点"><!--配合插件elevator回到底部--></div>
+
+ <header class="site-header fixed-top"> 
+  <nav class="container-fluid row ">
+    <div class="col-md-3 offset-md-1 " >    
+      <a class="header-site-title" href="{{ .Site.BaseURL }}" title="{{ .Site.Title }}"> 
+        {{ with .Site.Params.logoImgPath}}
+          <img title="logoImg" src="{{ $.Site.BaseURL }}{{ $.Site.Params.logoImgPath }}" >
+        {{ end }}  
+        {{ .Site.Title }}
+      </a>
+       
+    </div>  
+    <div class="col-md-5 offset-md-2" id="collapsibleNavbar" >
+      <ul class="header-menu">
+          {{ range .Site.Menus.main }}
+            <li class="text-center" >
+              <a class="nav-link" href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+          {{ end }}
+
+          {{ if .Site.Params.openSearch }}
+            <li class="text-center"> 
+                 <a data-remodal-target="searchinput">search</a>  
+              </li>
+          {{ end }}  
+        </ul>   
+    </div>   
+  </nav>
+</header>
+ 
+<!--注意id必定为小写-->
+<div class="remodal" data-remodal-id="searchinput" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc"> 
+  {{ partial "search.html" . }} 
+</div>

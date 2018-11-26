@@ -1,0 +1,16 @@
+<aside>
+	{{ if gt (len .TableOfContents) 0 }}
+	<!--默认开启，仅当toc为false时期不开启--> 
+	{{ if ne .Params.toc false }}
+	<div id="sidebar-main-trigger" class="tableContentToc">
+	  	<i class="fa fa-anchor"></i> 
+	</div>
+
+	<div class="sidebar main right" id="sidebar-main"> 
+		<div class="wrapper">  
+		    {{ .TableOfContents }} 
+		</div> 
+	</div> 
+	{{ end }}
+	{{ end }}  
+</aside>
