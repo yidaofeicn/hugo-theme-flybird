@@ -47,9 +47,19 @@
 			</div> 
 		</div>  
 	</header>  
-	<content class="markdown">{{ .Content }}</content>  
+	<content class="markdown">
+		{{ .Content }}
+			
+		 
+		<div class="text-center">
+			<div id="i-share"
+			    class="btn btn-default  share-widget">
+			    <i class="fa fa-share-alt"></i>
+			</div>
+		</div> 
+	</content>  
  
-  <div class="article-footer">
+  <div class="article-footer"> 
     {{ with .NextInSection }} 
       <div class="ref-prev" >
         <a href="{{ .Permalink }}"><i class="fa fa-angle-double-left"></i>&nbsp;{{ .Title }}  </a>
