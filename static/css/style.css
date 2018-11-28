@@ -708,6 +708,14 @@ hr {
   white-space: pre;
   word-wrap: normal;
   word-break: normal; }
+.markdown .table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; }
+.markdown .table-responsive > .table-bordered {
+  border: 0; }
 .markdown table {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -755,9 +763,9 @@ hr {
   color: #e95420; }
 .markdown b, .markdown strong {
   font-weight: 700;
-  color: #363636; }
+  color: #ff1700; }
 .markdown em {
-  color: #797979;
+  color: #ff1700;
   font-style: italic; }
 .markdown ul, .markdown ol {
   line-height: 1.2rem;

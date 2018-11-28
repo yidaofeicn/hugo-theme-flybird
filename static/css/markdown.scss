@@ -69,7 +69,19 @@
 		    word-wrap: normal;
 		    word-break: normal; 
 	}
-	  
+	
+	//响应式表格-http://caibaojian.com/responsive-tables.html
+	.table-responsive {
+	  display: block;
+	  width: 100%;
+	  overflow-x: auto;
+	  -webkit-overflow-scrolling: touch;
+	  -ms-overflow-style: -ms-autohiding-scrollbar;
+	}
+
+	.table-responsive > .table-bordered {
+	  border: 0;
+	}
 	table{
 		margin-top:1rem;
     	margin-bottom:1rem;
@@ -132,10 +144,10 @@
 
 	b,strong{
 		font-weight: 700; 
-		color: #363636;
+		color: #ff1700;
 	}
 	em{
-		color: #797979;
+		color: #ff1700;
     	font-style: italic;
 	}
 
@@ -162,12 +174,13 @@
 	}  
 	//内部引用的iframe框架，形成响应式布局
 	.videoIframe{
-		height:60vh; width:80vh;
+		height:60vh; 
+		width:80vh; 
 	}
 	@media(max-width:420px){ 
 		.videoIframe{
 			max-height: 200px;
-			max-width: 300px;
+			max-width: 300px; 
 		}
 	} 
 	//内部图片，需要配合相关插件使用

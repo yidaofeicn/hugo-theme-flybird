@@ -44,15 +44,16 @@
 		{{ if .Params.CopyrightStatement }}
 			<div class="article-copyright">
 			  	<ul>
-			  		<li><strong>本文作者：</strong>{{ .Params.author}}</li>
-			  		<li><strong>本文链接：</strong>{{ .Permalink }}</li>
+			  		{{ if .Params.author }}
+			  		<li><strong>本文作者：</strong>{{ .Params.author | safeHTML}}</li>
+			  		{{ end }}
 			  		<li><strong>版权申明：</strong>{{ .Params.CopyrightStatement |  safeHTML}}</li>
 			  	</ul>
 			</div>
 		{{ else }}
 			<div class="article-copyright">
 			  	<ul>
-			  		<li><strong>本文作者：</strong>{{ .Site.Params.articleAuth.author}}</li>
+			  		<li><strong>本文作者：</strong>{{ .Site.Params.articleAuth.author | safeHTML}}</li>
 			  		<li><strong>本文链接：</strong>{{ .Permalink }}</li>
 			  		<li><strong>版权申明：</strong>{{ .Site.Params.articleAuth.CopyrightStatement | safeHTML }}</li>
 			  	</ul>
