@@ -51,6 +51,9 @@
 <!--JQUERY 插件-simpler-sidebar 侧边栏-->
 <link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}thirdParty/simpler-sidebar/jquery.simpler-sidebar.css"> 
 <script type="text/javascript" src="{{ .Site.BaseURL }}thirdParty/simpler-sidebar/jquery.simpler-sidebar.js"></script> 
+<!--音乐播放软件-->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 <!--JQUERY 插件 remodal-->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal-default-theme.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.css">
@@ -78,10 +81,6 @@
 {{ if .IsPage}}
 <!--并埋入一个数据点-->
 <span id="isPage" data-isPage="true" style="display: none;"></span>
-
-<!--音乐播放软件-->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 {{ end }}
 
  

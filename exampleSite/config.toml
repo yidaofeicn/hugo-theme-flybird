@@ -1,52 +1,57 @@
-baseURL = "https://yidaofeicn.github.io/"	#网站基础地址
+baseURL = "https://yidaofei.com/"	#网站基础地址
 Title = " 易道非 Blog"				#名称
 Theme ="flybirdNext"				#开发主题
 
-
 LanguageCode = "zh-CN"
 HasCJKLanguage = true
-summaryLength=75					#简介长度，文章中可以使用 <!--more--> 指定呈现的内容
+summaryLength=120					#简介长度，文章中可以使用 <!--more--> 指定呈现的内容
 enableEmoji=true    				#是否启用表情
 paginate = 10						#分页
-googleAnalytics ="UA-126184892-2"	#google分析 
+googleAnalytics ="xxxxxx"	#google分析 
 
 #Blackfriday配置
 [blackfriday]
 	angledQuotes = true
 	fractions = false
 	plainIDAnchors = true
-	extensions = ["hardLineBreak"]
+
  
 [Params] 
 	isDevMode=false				#是否开启开发模式-主要定位页面使用
-	DateFormat = "May 1,2006"		#日期格式化
+	DateFormat = "2006年01月02日"		#日期格式化
 	archive-paginate=10        	#分类、标签分页 
 	rssFullContent=true
 	busuanzi=true
-
+	favicon="/image/favicon-32x32.png"
 	#导航部分设置
 	logoImgPath="/image/logo.png"		#logo图片存放地址
 	openSearch=true						#开启搜索
 	#全局内容设置
-	Keywords="software、易道非、飞雪"                 #关键词配置 
-	authorName="易道非"
-	lifeMotto="道可道，非常道，名可名，非常名"		  #人生格言 
-	copyrightURL="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh"
-	copyrightName="© 自由转载-非商用-非衍生-保持署名" 
-	email="yidaofeicn@gmail.com"
-	rss=true
-	githubURL="https://github.com/yidaofeicn"
+	Keywords="software、易道非、飞雪"                 #关键词配置  
+	 
+
 
 #utterances 评论系统
 [Params.utteranc]
 	enable=true
-	repo = "yidaofeicn/yidaofeicnHugoBlog-utterances"
+	repo = "xxxxxx"
 	issueTerm = "pathname"
-#disqus 评论
-disqusShortname = ""       
 
-#计数器
 
+#algolia 搜索
+[Params.algolia]
+	AppID="xxxxxx"
+	SearchKey="xxxxxx"
+	initIndex="xxxxxx"
+#文章转载权限等
+[Params.articleAuth]
+	author="易道非"
+ 	CopyrightStatement="本博客所有文章除特别声明外，均采用 <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh'>[CC BY-NC-SA 4.0 CN ]</a> 许可协议。转载请注明出处！"
+[Params.siteAuth]
+	copyrightStatement="Copyright© 2018 Transparent Thoughts. All rights reserved."
+[Params.social]
+	email="xxxxxx" 
+	github="xxxxxx"
 
 
 
