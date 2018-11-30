@@ -17,7 +17,9 @@ tags: ["个人建站","开源软件"]
 3. [GFM 表情列表](https://yidaofei.com/post/20181128-software-skills-markdown-github-emoji/)
 4. [个人建站 - Hugo - 快速开始](https://yidaofei.com/post/20181108-hugo-quick-start/)
 
+
 <!--more-->
+
 ##  标题
 
 # H1
@@ -124,7 +126,7 @@ if (document.getElementById('my-player') !== null) {
  
 ##  图片 {#section-07}
 
-![这是一只梅花鹿](https://piwigo.yidaofei.com/galleries/201809/piwigo-photo-gallery.png)
+![Piwigo 图库](https://piwigo.yidaofei.com/galleries/201809/piwigo-photo-gallery.png)
  
 ##  表格
 
@@ -220,12 +222,12 @@ if (document.getElementById('my-player') !== null) {
 
 源代码：
 ```html 
-<iframe height=498 width=510 src='http://player.youku.com/embed/XMzMwODI4ODY4OA==' frameborder=0 'allowfullscreen'></iframe>
+<iframe height=498 width=510 src='https://player.youku.com/embed/XMzMwODI4ODY4OA==' frameborder=0 'allowfullscreen'></iframe>
 ```
 
 呈现：
 
-<iframe height=498 width=510 src='http://player.youku.com/embed/XMzMwODI4ODY4OA==' frameborder=0 'allowfullscreen'></iframe>
+<iframe height=498 width=510 src='https://player.youku.com/embed/XMzMwODI4ODY4OA==' frameborder=0 'allowfullscreen'></iframe>
 
 ### shortcodes 方式
 Copy 自 hugo-nuo 主题：使用 [video.js](http://videojs.com/) 播放视频文件，你还可以自己定义视频的封面，在主题目录 `layouts/shortcodes` 文件夹下的 `video.html` 对该标签进行定义。
@@ -243,4 +245,7 @@ Copy 自 hugo-nuo 主题：使用 [video.js](http://videojs.com/) 播放视频�
 1. <a id="ref01">[Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)</a>
 2. <a id="ref02">[Markdown 语法手册](https://www.zybuluo.com/EncyKe/note/120103)</a>
 
+
+<!--以下为隐藏的链接-->
+[zhihu]:http:zhihu.com
 
