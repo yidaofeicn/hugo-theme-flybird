@@ -38,8 +38,17 @@
               <span class="sectionSup" >{{ len $pages }}</span>
             </h4>
         </a> 
+        
+        {{ range   $pages }}
+          <ul>
+            <li>
+              <span>{{ .Date.Format (.Site.Params.DateFormat | default "2006-01-02") }}&nbsp;&nbsp;</span>
+              <a href="{{ .Permalink}}">{{ .LinkTitle }}</a>
+            </li> 
+          </ul>  
+        {{ end }}  
+        <!--
 
-        <!--迭代输出5页-->
         {{ range first 5 $pages }}
           <ul>
             <li>
@@ -49,12 +58,13 @@
           </ul>    
         {{ end }}
 
-        <!--查看更多-->
+        
         {{ if gt (len $pages) 5 }}
           <div class="clearfix">
             <a href="{{ $.Site.BaseURL }}categories/{{ $term | urlize | lower }}"  class="float-right">阅读更多</a>
           </div>
         {{ end }} 
+        -->
       </section>  
       {{ end }} 
     {{ end }}   
