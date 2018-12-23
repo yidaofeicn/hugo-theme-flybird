@@ -9,9 +9,7 @@
 <section class="main-content-container">
  
  
-<!--是否过滤相关的页面-->
 
- 
 <!--过滤非 post 页面--> 
 {{ $pages:=.Pages.ByDate.Reverse }}
 {{ if .Site.Params.filterTypePost }}
@@ -19,7 +17,6 @@
 {{ end }}
 
 {{ $paginator := .Paginate $pages  }}
-
 {{ range $paginator.Pages }}
    {{ partial "summary.html" . }}  
 {{ end }}

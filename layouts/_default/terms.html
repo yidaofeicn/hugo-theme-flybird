@@ -14,6 +14,7 @@
 <center style="background: red;"><strong>default/terms.html</strong></center>
 {{ end }}
 
+ 
 
 {{ $termName := .Data.Plural }}
 {{ $terms := .Data.Terms.ByCount }}
@@ -79,10 +80,7 @@
 
 
 <div class="main-content-container">
-  <div class="tag-card">
-        <div class="tag-cloud-title">
-             {{ $length }} Tags In Total
-        </div>
+  <div class="tag-card"> 
         <div class="tag-cloud-tags">
         {{ range $tagName, $taxonomy := $.Site.Taxonomies.tags }} 
           <!--start_计算标签大小--> 
@@ -91,9 +89,10 @@
           {{ $count := len $taxonomy.Pages }}
           {{ $weigth := div (sub (math.Log $count) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
           {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth) ) }} 
-
+          
+ 
           <!--过滤非 post 页面/采用取反-->   
-          {{if eq (and ($.Site.Params.filterTypePost) (eq (len (where $taxonomy.Pages "Type" "post"))  0)) false}} 
+          {{ if ne (and (eq $.Site.Params.filterTypePost true) (eq (len (where $taxonomy.Pages "Type" "post"))  0)) true   }}
              {{ with $.Site.GetPage "taxonomy" (printf "%s/%s" $type $tagName) }}
                 <a href="{{ .Permalink }}" 
                     style="font-size:{{$currentFontSize}}{{$fontUnit}}">{{ $tagName }}
@@ -118,12 +117,14 @@
 		  <!--批量处理标签-->
 		  	<ul>
 		    {{ range $key, $taxonomy := .Site.Taxonomies.categories }}
-		  		<li class="categories-toc-item-li"> 
-		      	<a href="#categories-{{ $key | urlize | lower }}"  title="{{ $key}}">
-		          {{ $key }} 
-              <span class="float-right sectionSup">{{ len $taxonomy }}</span>
-		        </a> 
-		     	</li>
+           {{if eq (and ($.Site.Params.filterTypePost) (eq (len (where $taxonomy.Pages "Type" "post"))  0)) false}} 
+              <li class="categories-toc-item-li"> 
+                <a href="#categories-{{ $key | urlize | lower }}"  title="{{ $key}}">
+                  {{ $key }} 
+                  <span class="float-right sectionSup">{{ len $taxonomy }}</span>
+                </a> 
+              </li>
+           {{ end }} 
 		    {{ end }}
 			    </ul>
 		   {{ end }}
