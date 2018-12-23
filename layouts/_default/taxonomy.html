@@ -17,9 +17,18 @@
   <div class="categories-card">
     <header class="text-center">
       <h4>{{ .Title }}</h4>
-    </header> 
+    </header>  
+     
+ 
 
-    {{ $paginator := .Paginate (where .Data.Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 10) }}       
+    <!--过滤非 post 页面--> 
+    {{ $pages:=.Data.Pages.ByDate.Reverse }}
+    {{ if .Site.Params.filterTypePost }}
+        {{ $pages = where .Data.Pages.ByDate.Reverse "Type" "post"  }}
+    {{ end }}
+    
+    {{ $paginator := .Paginate $pages (index .Site.Params "archive-paginate" | default 10) }}
+
       <ul class="article-list">
       {{ range $paginator.Pages }}  
           <li>

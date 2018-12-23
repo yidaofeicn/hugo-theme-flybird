@@ -11,6 +11,7 @@
 
 {{- $paginator := .Paginate (where .Data.Pages.ByDate.Reverse "Type" "post") (index .Site.Params "archive-paginate" | default 10) }}
 
+
 <div class="main-content-container">
   {{- if not $paginator.HasPrev }}
     <div class="archive-title">

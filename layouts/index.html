@@ -8,7 +8,18 @@
 	
 <section class="main-content-container">
  
-{{ $paginator := .Paginate (where .Pages "Type" "post") }}
+ 
+<!--是否过滤相关的页面-->
+
+ 
+<!--过滤非 post 页面--> 
+{{ $pages:=.Pages.ByDate.Reverse }}
+{{ if .Site.Params.filterTypePost }}
+    {{ $pages = where .Pages.ByDate.Reverse "Type" "post"  }}
+{{ end }}
+
+{{ $paginator := .Paginate $pages  }}
+
 {{ range $paginator.Pages }}
    {{ partial "summary.html" . }}  
 {{ end }}

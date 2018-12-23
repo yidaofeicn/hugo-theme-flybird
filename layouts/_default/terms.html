@@ -28,45 +28,33 @@
   <!--主体部分--> 
     {{ range $terms }}
       {{ $term := .Term }}
-      {{ $pages := .Pages }}
+      {{ $pages:=.Pages}}
+      <!--过滤非 post 页面-->
+      {{ if $.Site.Params.filterTypePost }}
+        {{ $pages = where .Pages "Type" "post"  }}
+      {{ end }}
 
-      {{ with $.Site.GetPage "taxonomy" (printf "%s/%s" $type $term) }}
-      <section class="categories-card"> 
-        <a href="{{ $.Site.BaseURL }}categories/{{ $term | urlize | lower }}" 
-           class="categories-title" title="{{ $term}}" id="categories-{{ $term }}">
-            <h4 >{{ $term }}
-              <span class="sectionSup" >{{ len $pages }}</span>
-            </h4>
-        </a> 
-        
-        {{ range   $pages }}
-          <ul>
-            <li>
-              <span>{{ .Date.Format (.Site.Params.DateFormat | default "2006-01-02") }}&nbsp;&nbsp;</span>
-              <a href="{{ .Permalink}}">{{ .LinkTitle }}</a>
-            </li> 
-          </ul>  
-        {{ end }}  
-        <!--
-
-        {{ range first 5 $pages }}
-          <ul>
-            <li>
-              <span>{{ .Date.Format (.Site.Params.DateFormat | default "2006-01-02") }}&nbsp;&nbsp;</span>
-              <a href="{{ .Permalink}}">{{ .LinkTitle }}</a>
-            </li> 
-          </ul>    
-        {{ end }}
-
-        
-        {{ if gt (len $pages) 5 }}
-          <div class="clearfix">
-            <a href="{{ $.Site.BaseURL }}categories/{{ $term | urlize | lower }}"  class="float-right">阅读更多</a>
-          </div>
+      {{ if gt (len $pages) 0 }}  
+        {{ with $.Site.GetPage "taxonomy" (printf "%s/%s" $type $term) }}
+        <section class="categories-card"> 
+          <a href="{{ $.Site.BaseURL }}categories/{{ $term | urlize | lower }}" 
+             class="categories-title" title="{{ $term}}" id="categories-{{ $term }}">
+              <h4 >{{ $term }} 
+                <span class="sectionSup" >{{ len $pages }}</span>
+              </h4>
+          </a> 
+          
+          {{ range  $pages  }}
+            <ul>
+              <li>
+                <span>{{ .Date.Format (.Site.Params.DateFormat | default "2006-01-02") }}&nbsp;&nbsp;</span>
+                <a href="{{ .Permalink}}">{{ .LinkTitle }}</a>
+              </li> 
+            </ul>  
+          {{ end }}   
+        </section>  
         {{ end }} 
-        -->
-      </section>  
-      {{ end }} 
+      {{ end }}
     {{ end }}   
 
   <div id="sidebar-main-trigger" class="tableContentToc">
@@ -96,19 +84,22 @@
              {{ $length }} Tags In Total
         </div>
         <div class="tag-cloud-tags">
-        {{ range $tagName, $taxonomy := $.Site.Taxonomies.tags }}
-            {{ $currentTagCount := len $taxonomy.Pages }}
-            {{ $currentFontSize := (add $smallestFontSize (mul (sub $currentTagCount $min) $fontStep) ) }}
-            {{ $count := len $taxonomy.Pages }}
-            {{ $weigth := div (sub (math.Log $count) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
-            {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth) ) }}
-            {{ with $.Site.GetPage "taxonomy" (printf "%s/%s" $type $tagName) }}
-              <!--Current font size: {{$currentFontSize}}-->  
-              <a href="{{ .Permalink }}" 
-                style="font-size:{{$currentFontSize}}{{$fontUnit}}">{{ $tagName }}
-              </a>
-               
-            {{ end }}
+        {{ range $tagName, $taxonomy := $.Site.Taxonomies.tags }} 
+          <!--start_计算标签大小--> 
+          {{ $currentTagCount := len $taxonomy.Pages }}
+          {{ $currentFontSize := (add $smallestFontSize (mul (sub $currentTagCount $min) $fontStep) ) }}
+          {{ $count := len $taxonomy.Pages }}
+          {{ $weigth := div (sub (math.Log $count) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
+          {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth) ) }} 
+
+          <!--过滤非 post 页面/采用取反-->   
+          {{if eq (and ($.Site.Params.filterTypePost) (eq (len (where $taxonomy.Pages "Type" "post"))  0)) false}} 
+             {{ with $.Site.GetPage "taxonomy" (printf "%s/%s" $type $tagName) }}
+                <a href="{{ .Permalink }}" 
+                    style="font-size:{{$currentFontSize}}{{$fontUnit}}">{{ $tagName }}
+                </a> 
+             {{ end }}
+          {{ end }} 
         {{ end }}
         </div> 
   </div>
