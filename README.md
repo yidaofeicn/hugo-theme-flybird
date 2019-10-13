@@ -22,7 +22,7 @@
 ## How?
 如何使用本主题，只需要将本主题下载后复制至 **themes/** 目录之下，并将 「exampleSite」 目录之下的内容 COPY 至你的博客目录覆盖即可！
 
-使用`hugo server` 即可呈现如 http://yidaofei.com/ 样式
+使用`hugo server` 即可呈现如 http://blog.yidaofei.com/ 样式
 
 
 
